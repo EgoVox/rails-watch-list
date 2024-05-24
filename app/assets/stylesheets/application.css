@@ -13,6 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+.movie-overview {
+  width: calc(100% - 140px);
+  /* 140px est la largeur de l'image, ajustez-la si nécessaire */
+  margin-left: 140px;
+  /* Décalez le texte pour qu'il commence après l'image */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-body {
+  height: 100px;
+  /* Ajustez la hauteur comme nécessaire */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.body{
+  background-color: #1c1c1c;
+}
+
 .container {
   padding: 5px;
   background-color: #F1F1F1;
@@ -22,7 +44,7 @@
 
 .list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   list-style-type: none;
   padding: 0;
@@ -48,7 +70,46 @@ a {
 }
 
 img {
-  width: 400px;
+  width: 250px;
   border: 10px solid black;
   border-radius: 5%;
+}
+
+.navbar-cinema-image {
+  height: 50px;
+  object-fit: cover;
+}
+
+.navbar {
+  background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);
+  border-bottom: 2px solid #fff;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white !important;
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  margin-right: 20px;
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffdd57 !important;
+}
+
+.navbar-cinema-image {
+  height: 50px;
+  width: auto;
+  border-radius: 5px;
+  border: 2px solid #fff;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

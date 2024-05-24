@@ -1,18 +1,45 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a style="padding-left:300px" class="navbar-brand" href="#">MyCinema</a>
+      <img src="https://source.unsplash.com/200x100/?cinema" alt="Cinema" class="navbar-cinema-image">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 <div class="container">
   <ul class="list">
+    <% i = 0 %>
     <% @lists.each do |list| %>
       <li class="card-item">
         <div class="card">
-          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8JTIzcmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D" alt="">
-          <%= link_to list.name, list_path(list) %>
-          <%= link_to 'Delete', list_path(list), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-danger' %>
+          <img src="https://source.unsplash.com/random/200x200?sig=<%= i %>" alt="">
+          <div class="card-body">
+            <%= link_to list.name, list_path(list) %>
+          </div>
+          <%= link_to 'Delete', list_path(list), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
         </div>
       </li>
+      <% i += 1 %>
     <% end %>
   </ul>
   <hr>
-  <%= link_to "add a list", new_list_path %>
+  <%= link_to "add a list", new_list_path, class: "btn btn-primary" %>
 </div>
