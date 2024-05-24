@@ -1,0 +1,58 @@
+<h1><%= @list.name %></h1>
+
+<% if @list.name == "All movies" %>
+  <ul>
+  <% @movies.each do |movie| %>
+    <li><%= movie.title %></li>
+    <% poster_url = movie.poster_url %>
+    <img src="https://image.tmdb.org/t/p/w500/<%= poster_url %>" alt="">
+  <% end %>
+  </ul>
+<% else %>
+  <h2>Movies in <%= @list.name %> List</h2>
+  <ul>
+    <% @movies.each do |movie| %>
+      <li><%= movie.title %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: [@list, @list.reviews.new], url: list_reviews_path(@list)) do |form| %>
+  <div>
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div>
+    <%= form.label :rating %>
+    <%= form.number_field :rating, in: 1..5 %>
+  </div>
+
+  <div>
+    <%= form.submit 'Add Review' %>
+  </div>
+<% end %>
+
+<h2>Reviews</h2>
+<% if @reviews.any? %>
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        <strong>Rating:</strong> <%= review.rating %><br>
+        <strong>Content:</strong> <%= review.content %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews for this list.</p>
+<% end %>
+
+add bookmarks
+<div>
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :movie %>
+    <%= f.association :list %>
+    <%= f.submit %>
+  <% end %>
+</div>
